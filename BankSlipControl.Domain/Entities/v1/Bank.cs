@@ -1,4 +1,4 @@
-﻿namespace BankSlipControl.Domain.Entities.v1.Bank
+﻿namespace BankSlipControl.Domain.Entities.v1
 {
     public class Bank
     {

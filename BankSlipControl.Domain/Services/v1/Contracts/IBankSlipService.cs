@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BankSlipControl.Domain.InputModels.v1.Bank;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BankSlipControl.Domain.Services.v1.Contracts
 {
-    internal interface IBankSlipService
+    public interface IBankSlipService
     {
+        public Task<IActionResult> CreateBankBill(NewBankInputModel newBankInputModel);
+        public Task<IActionResult> GetBankBillById(int id);
     }
 }

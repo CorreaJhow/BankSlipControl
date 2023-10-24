@@ -3,48 +3,18 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BankSlipControl.Controllers.v1
 {
-    [Route("api/v1/[controller]")]
+    [Route("api/v1/bankslip/[controller]")]
     [ApiController]
     public class BankSlipController : ControllerBase
     {
 
-        [HttpPost("api/v1/bankbill")]
+        [HttpPost("api/v1/bankslip")]
         public async Task<IActionResult> CreateBankBill(NewBankInputModel newBankInputModel)  
         {
             return Ok();
         }
 
-        [HttpPost("api/v1/bank")]
-        public async Task<IActionResult> CreateBank(NewBankInputModel newBankInputModel) 
-        {
-            return Ok();
-        }
-
-        [HttpGet("api/v1/bank")]
-        public async Task<IActionResult> GetAllBanks()
-        {
-            return Ok(); //return all banks 
-        }
-
-        [HttpGet("api/v1/bank/{code}")]
-        public async Task<IActionResult> GetBankById(int code)
-        {
-            // Exemplo fictício:
-            //var banco = await _repository.GetBancoByCode(code);
-
-            //if (banco == null)
-            //{
-            //    return NotFound(); // Ou BadRequest(), dependendo do contexto.
-            //}
-
-            //// Retorne os dados do banco
-            //return Ok(new { banco.Id, banco.NomeBanco, banco.CodigoBanco, banco.PercentualJuros });
-
-            return Ok();
-        }
-
-
-        [HttpGet("api/v1/bankbill/{id}")]
+        [HttpGet("api/v1/bankslip/{id}")]
         public async Task<IActionResult> GetBankBillById(int id)
         {
             // Regra de negócio:
