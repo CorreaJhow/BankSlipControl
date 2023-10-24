@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BankSlipControl.Domain.InputModels.v1.Bank;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BankSlipControl.Controllers.v1
 {
@@ -8,13 +9,13 @@ namespace BankSlipControl.Controllers.v1
     {
 
         [HttpPost("api/v1/bankbill")]
-        public async Task<IActionResult> CreateBankBill() ///passar DTO de boleto bancario 
+        public async Task<IActionResult> CreateBankBill(NewBankInputModel newBankInputModel)  
         {
             return Ok();
         }
 
         [HttpPost("api/v1/bank")]
-        public async Task<IActionResult> CreateBank() ///passar DTO de banco
+        public async Task<IActionResult> CreateBank(NewBankInputModel newBankInputModel) 
         {
             return Ok();
         }

@@ -6,9 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="ImplementationPersistence\v1\BankSlip\" />
-    <Folder Include="ImplementationPersistence\v1\Bank\" />
-  </ItemGroup>
-
 </Project>
