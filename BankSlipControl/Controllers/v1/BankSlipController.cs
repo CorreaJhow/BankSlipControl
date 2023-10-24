@@ -3,18 +3,18 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BankSlipControl.Controllers.v1
 {
-    [Route("api/v1/bankslip/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class BankSlipController : ControllerBase
     {
 
-        [HttpPost("api/v1/bankslip")]
+        [HttpPost("/v1/bankslip")]
         public async Task<IActionResult> CreateBankBill(NewBankInputModel newBankInputModel)  
         {
             return Ok();
         }
 
-        [HttpGet("api/v1/bankslip/{id}")]
+        [HttpGet("/v1/bankslip/{id}")]
         public async Task<IActionResult> GetBankBillById(int id)
         {
             // Regra de negócio:

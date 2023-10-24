@@ -9,19 +9,19 @@ namespace BankSlipControl.Controllers.v1
     public class BankController : ControllerBase
     {
 
-        [HttpPost("api/v1/bank")]
+        [HttpPost("/v1/bank")]
         public async Task<IActionResult> CreateBank(NewBankInputModel newBankInputModel)
         {
             return Ok();
         }
 
-        [HttpGet("api/v1/bank")]
+        [HttpGet("/v1/bank")]
         public async Task<IActionResult> GetAllBanks()
         {
             return Ok(); //return all banks 
         }
 
-        [HttpGet("api/v1/bank/{code}")]
+        [HttpGet("/v1/bank/{code}")]
         public async Task<IActionResult> GetBankById(int code)
         {
             // Exemplo fictício:
