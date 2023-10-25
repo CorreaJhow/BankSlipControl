@@ -3,6 +3,7 @@ using BankSlipControl.Domain.Services.v1.BankContract;
 using BankSlipControl.Domain.Services.v1.BankSlipContract;
 using BankSlipControl.Infrastructure.ImplementationPersistence.v1;
 using BankSlipControl.Infrastructure.ImplementationPersistence.v1.Implementation;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace BankSlipControl
@@ -15,7 +16,10 @@ namespace BankSlipControl
 
             // Add services to the container.
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers().AddFluentValidation(config =>
+            {
+                config.RegisterValidatorsFromAssembly(typeof(Program).Assembly);
+            });
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
