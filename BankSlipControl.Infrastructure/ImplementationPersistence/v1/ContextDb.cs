@@ -5,8 +5,8 @@ namespace BankSlipControl.Infrastructure.ImplementationPersistence.v1
 {
     public class ContextDb : DbContext
     {
-        public DbSet<BankSlip> Boletos { get; set; }
-        public DbSet<Bank> Bancos { get; set; }
+        public DbSet<BankSlip> BankSlip { get; set; }
+        public DbSet<Bank> Bank { get; set; }
         public ContextDb(DbContextOptions<ContextDb> options) : base(options)
         {
         }
