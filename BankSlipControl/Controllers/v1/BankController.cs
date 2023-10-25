@@ -1,4 +1,6 @@
 ﻿using BankSlipControl.Domain.InputModels.v1.Bank;
+using BankSlipControl.Domain.Services.v1.Contracts;
+using BankSlipControl.Domain.Services.v1.Implementation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,6 +10,11 @@ namespace BankSlipControl.Controllers.v1
     [ApiController]
     public class BankController : ControllerBase
     {
+        private readonly IBankService _bankService;
+        public BankController(BankService bankService)
+        {
+            _bankService = bankService;
+        }
 
         [HttpPost("/v1/bank")]
         public async Task<IActionResult> CreateBank(NewBankInputModel newBankInputModel)

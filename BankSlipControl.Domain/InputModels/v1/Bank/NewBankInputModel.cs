@@ -2,9 +2,8 @@
 {
     public class NewBankInputModel
     {
-        public int Id { get; set; }
-        public string NomeBanco { get; set; }
-        public string CodigoBanco { get; set; }
-        public decimal PercentualJuros { get; set; }
+        public string BankName { get; set; }
+        public string BankCode { get; set; }
+        public decimal interestPercentage { get; set; }
     }
 }
