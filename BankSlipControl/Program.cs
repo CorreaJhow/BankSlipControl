@@ -1,6 +1,6 @@
 using BankSlipControl.Domain.Services.v1.Contracts;
-using BankSlipControl.Domain.Services.v1.Implementation;
 using BankSlipControl.Infrastructure.ImplementationPersistence.v1;
+using BankSlipControl.Infrastructure.ImplementationPersistence.v1.Implementation;
 using Microsoft.EntityFrameworkCore;
 
 namespace BankSlipControl

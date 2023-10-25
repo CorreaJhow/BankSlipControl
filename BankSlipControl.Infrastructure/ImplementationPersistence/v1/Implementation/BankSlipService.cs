@@ -3,7 +3,7 @@ using BankSlipControl.Domain.Services.v1.Contracts;
 using BankSlipControl.Infrastructure.ImplementationPersistence.v1;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BankSlipControl.Domain.Services.v1.Implementation
+namespace BankSlipControl.Infrastructure.ImplementationPersistence.v1.Implementation
 {
     public class BankSlipService : IBankSlipService
     {
@@ -14,7 +14,7 @@ namespace BankSlipControl.Domain.Services.v1.Implementation
         }
         public Task<IActionResult> CreateBankBill(NewBankInputModel newBankInputModel)
         {
-            throw new NotImplementedException(); 
+            throw new NotImplementedException();
         }
 
         public Task<IActionResult> GetBankBillById(int id)
