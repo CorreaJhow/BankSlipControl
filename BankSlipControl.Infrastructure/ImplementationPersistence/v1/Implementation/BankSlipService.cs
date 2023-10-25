@@ -1,9 +1,5 @@
 ﻿using BankSlipControl.Domain.Entities.v1.BankSlipEntitie;
-using BankSlipControl.Domain.InputModels.v1.Bank;
-using BankSlipControl.Domain.InputModels.v1.BankSlip;
 using BankSlipControl.Domain.Services.v1.BankSlipContract;
-using BankSlipControl.Infrastructure.ImplementationPersistence.v1;
-using Microsoft.AspNetCore.Mvc;
 
 namespace BankSlipControl.Infrastructure.ImplementationPersistence.v1.Implementation
 {
@@ -15,16 +11,37 @@ namespace BankSlipControl.Infrastructure.ImplementationPersistence.v1.Implementa
             _context = context;
         }
 
-        public Task<IActionResult> CreateBankSlip(BankSlip newBankSlip)
+        public async Task<BankSlip> CreateBankSlip(BankSlip bankSlip)
         {
-            //mapear utilizando auto mapper NewBankSlipInputModel para BankSlip
-            throw new NotImplementedException();
+            try
+            {
+                var bankSlipReturn = _context.BankSlip.Add(bankSlip);
 
+                await _context.SaveChangesAsync();
+
+                return bankSlipReturn.Entity;
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("BankSlip could not be created.", ex);
+            }
         }
 
-        public Task<IActionResult> GetBankBillById(int id)
+        public async Task<BankSlip> GetBankBillById(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var bankSlip = await _context.BankSlip.FindAsync(id);
+
+                if (bankSlip is null)
+                    return null;
+
+                return bankSlip;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error getting BankSlip by ID {id}", ex);
+            }
         }
     }
 }

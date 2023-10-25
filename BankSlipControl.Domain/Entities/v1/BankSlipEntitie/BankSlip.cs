@@ -27,7 +27,7 @@ namespace BankSlipControl.Domain.Entities.v1.BankSlipEntitie
         [Required]
         public DateTime ExpiryDate { get; set; }
 
-        public string Observation { get; set; }
+        public string? Observation { get; set; }
 
         [ForeignKey("BankId")]
         public int BankId { get; set; }

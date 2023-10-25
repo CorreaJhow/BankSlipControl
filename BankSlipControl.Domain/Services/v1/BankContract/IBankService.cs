@@ -1,15 +1,13 @@
-﻿using BankSlipControl.Domain.InputModels.v1.Bank;
-using Microsoft.AspNetCore.Mvc;
+﻿using BankSlipControl.Domain.Entities.v1.BankEntitie;
+using BankSlipControl.Domain.InputModels.v1.Bank;
 
 namespace BankSlipControl.Domain.Services.v1.BankContract
 {
     public interface IBankService
     {
-        public Task<IActionResult> CreateBank(BankInputModel newBankInputModel);
-
-        public Task<IActionResult> GetAllBanks();
-
-        public Task<IActionResult> GetBankById(int code);
+        public Task<Bank> CreateBank(Bank newBank);
+        public Task<List<Bank>> GetAllBanks();
+        public Task<Bank> GetBankById(int code);
 
     }
 }

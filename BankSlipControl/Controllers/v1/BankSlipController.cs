@@ -2,6 +2,7 @@
 using BankSlipControl.Domain.Entities.v1.BankSlipEntitie;
 using BankSlipControl.Domain.InputModels.v1.Bank;
 using BankSlipControl.Domain.InputModels.v1.BankSlip;
+using BankSlipControl.Domain.Services.v1.BankContract;
 using BankSlipControl.Domain.Services.v1.BankSlipContract;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,30 +13,54 @@ namespace BankSlipControl.Controllers.v1
     public class BankSlipController : ControllerBase
     {
         private readonly IBankSlipService _bankSlipService;
+        private readonly IBankService _bankService;
         private readonly IMapper _mapper;
         public BankSlipController(IBankSlipService bankSlipService,
+                                  IBankService bankService,
                                   IMapper mapper)
         {
             _bankSlipService = bankSlipService;
+            _bankService = bankService;
             _mapper = mapper;
         }
 
         [HttpPost("/v1/bankslip")]
-        public async Task<IActionResult> CreateBankSlip(BankSlipInputModel newBankSlipInputModel)  
+        public async Task<IActionResult> CreateBankSlip(BankSlipInputModel newBankSlipInputModel)
         {
-            var bankSlip = _mapper.Map<BankSlip>(newBankSlipInputModel); 
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
-            var bankId = await _bankSlipService.CreateBankSlip(bankSlip);
+            try
+            {
+                var bankSlip = _mapper.Map<BankSlip>(newBankSlipInputModel);
+                var bankId = await _bankSlipService.CreateBankSlip(bankSlip);
 
-            if(bankId is null)
-                return NotFound(); 
-            
-            return Ok(bankId);
+                if (bankId is null)
+                    return NotFound("Unable to create BankSlip");
+
+                return CreatedAtAction(nameof(GetBankBillById), new { id = bankId.Id }, bankId.Id);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error creating BankSlip: {ex.Message}");
+            }
         }
 
         [HttpGet("/v1/bankslip/{id}")]
         public async Task<IActionResult> GetBankBillById(int id)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var bankSlip = await _bankSlipService.GetBankBillById(id);
+
+            if (bankSlip is null)
+                return NotFound();
+
+            if(DateTime.Now > bankSlip.ExpiryDate)
+            {
+                var bank = await 
+            }
             // Regra de negócio:
             // Se o boleto estiver sendo buscado após a data de vencimento,
             // o valor deve ser calculado com o percentual de juros do banco em questão.
