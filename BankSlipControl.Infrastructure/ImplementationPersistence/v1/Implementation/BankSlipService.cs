@@ -33,9 +33,6 @@ namespace BankSlipControl.Infrastructure.ImplementationPersistence.v1.Implementa
             {
                 var bankSlip = await _context.BankSlip.FindAsync(id);
 
-                if (bankSlip is null)
-                    return null;
-
                 return bankSlip;
             }
             catch (Exception ex)

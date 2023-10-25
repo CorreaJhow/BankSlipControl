@@ -1,8 +1,10 @@
 ﻿using BankSlipControl.Domain.Entities.v1.BankEntitie;
+using BankSlipControl.Domain.Entities.v1.BankSlipEntitie;
 using BankSlipControl.Domain.InputModels.v1.Bank;
 using BankSlipControl.Domain.Services.v1.BankContract;
 using BankSlipControl.Infrastructure.ImplementationPersistence.v1;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BankSlipControl.Infrastructure.ImplementationPersistence.v1.Implementation
 {
@@ -14,19 +16,48 @@ namespace BankSlipControl.Infrastructure.ImplementationPersistence.v1.Implementa
             _context = context;
         }
 
-        public Task<Bank> CreateBank(BankInputModel newBankInputModel)
+        public async Task<Bank> CreateBank(Bank newBank)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var bankReturn = _context.Bank.Add(newBank);
+
+                await _context.SaveChangesAsync();
+
+                return bankReturn.Entity;
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("Bank could not be created.", ex);
+            }
         }
 
-        public Task<List<Bank>> GetAllBanks()
+        public async Task<List<Bank>> GetAllBanks()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var banks = await _context.Bank.ToListAsync();
+
+                return banks;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error getting all banks", ex);
+            }
         }
 
-        public Task<Bank> GetBankById(int code)
+        public async Task<Bank> GetBankById(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var bank = await _context.Bank.FindAsync(id);
+
+                return bank;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error getting Bank by ID {id}", ex);
+            }
         }
     }
 }
