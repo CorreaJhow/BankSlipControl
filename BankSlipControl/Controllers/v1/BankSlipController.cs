@@ -33,12 +33,12 @@ namespace BankSlipControl.Controllers.v1
             try
             {
                 var bankSlip = _mapper.Map<BankSlip>(newBankSlipInputModel);
-                var bankSlipId = await _bankSlipService.CreateBankSlip(bankSlip);
+                var createBankSlip = await _bankSlipService.CreateBankSlip(bankSlip);
 
-                if (bankSlipId is null)
+                if (createBankSlip is null)
                     return NotFound("Unable to create BankSlip");
 
-                return CreatedAtAction(nameof(GetBankBillById), new { id = bankSlipId.Id }, bankSlipId.Id);
+                return Ok(createBankSlip);
             }
             catch (Exception ex)
             {

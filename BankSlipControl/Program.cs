@@ -24,8 +24,8 @@ namespace BankSlipControl
                 .AddDbContext<ContextDb>(opt => opt.UseNpgsql(
                     builder.Configuration.GetConnectionString("postgredb")));
 
-            //builder.Services.AddTransient<IBankSlipService, BankSlipService>();
-            //builder.Services.AddTransient<IBankService, BankService>();
+            builder.Services.AddTransient<IBankSlipService, BankSlipService>();
+            builder.Services.AddTransient<IBankService, BankService>();
 
             builder.Services.AddAutoMapper(typeof(BankProfile));
 
@@ -39,7 +39,7 @@ namespace BankSlipControl
             }
 
             app.UseHttpsRedirection();
-
+            app.UseRouting();
             app.UseAuthorization();
 
 

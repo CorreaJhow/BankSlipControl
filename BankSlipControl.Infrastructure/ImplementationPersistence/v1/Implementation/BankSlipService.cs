@@ -15,6 +15,8 @@ namespace BankSlipControl.Infrastructure.ImplementationPersistence.v1.Implementa
         {
             try
             {
+                var bankExist = await _context.Bank.FindAsync(bankSlip.BankId) ?? throw new Exception("There are no banks registered with this ID");
+                
                 var bankSlipReturn = _context.BankSlip.Add(bankSlip);
 
                 await _context.SaveChangesAsync();
@@ -23,7 +25,7 @@ namespace BankSlipControl.Infrastructure.ImplementationPersistence.v1.Implementa
             }
             catch (Exception ex)
             {
-                throw new InvalidOperationException("BankSlip could not be created.", ex);
+                throw new Exception($"Error during bankslip creation process in database {ex}");
             }
         }
 
@@ -37,7 +39,7 @@ namespace BankSlipControl.Infrastructure.ImplementationPersistence.v1.Implementa
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error getting BankSlip by ID {id}", ex);
+                throw new Exception($"Error during the process of getting BankSlip by ID in the database {id}", ex);
             }
         }
     }

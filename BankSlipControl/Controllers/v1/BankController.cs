@@ -28,12 +28,12 @@ namespace BankSlipControl.Controllers.v1
             try
             {
                 var bank = _mapper.Map<Bank>(newBankInputModel);
-                var bankId = await _bankService.CreateBank(bank);
+                var createdBank = await _bankService.CreateBank(bank);
 
-                if (bankId is null)
+                if (createdBank is null)
                     return NotFound("Unable to create Bank");
 
-                return CreatedAtAction(nameof(GetBankById), new { id = bankId.Id }, bankId.Id);
+                return Ok(createdBank);
             }
             catch (Exception ex)
             {
@@ -61,7 +61,7 @@ namespace BankSlipControl.Controllers.v1
             }
         }
 
-        [HttpGet("/v1/bank/{code}")]
+        [HttpGet("/v1/bank/{id}")]
         public async Task<IActionResult> GetBankById(int id)    
         {
             try

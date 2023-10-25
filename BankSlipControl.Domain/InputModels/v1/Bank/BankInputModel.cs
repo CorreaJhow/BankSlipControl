@@ -2,8 +2,8 @@
 {
     public class BankInputModel
     {
-        public string BankName { get; set; }
-        public string BankCode { get; set; }
-        public decimal interestPercentage { get; set; }
+        public string Name { get; set; }
+        public string Code { get; set; }
+        public decimal InterestPercentage { get; set; }
     }
 }
