@@ -2,7 +2,6 @@
 {
     public class NewBankSlipInputModel
     {
-        public int Id { get; set; }
         public string PayerName { get; set; }
         public string DocumentPayer { get; set; }
         public string BeneficiaryName { get; set; }
