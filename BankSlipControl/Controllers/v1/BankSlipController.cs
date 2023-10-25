@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using BankSlipControl.Domain.Entities.v1.BankSlipEntitie;
-using BankSlipControl.Domain.InputModels.v1.Bank;
 using BankSlipControl.Domain.InputModels.v1.BankSlip;
 using BankSlipControl.Domain.Services.v1.BankContract;
 using BankSlipControl.Domain.Services.v1.BankSlipContract;
