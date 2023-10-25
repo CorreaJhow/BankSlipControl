@@ -1,4 +1,6 @@
-using BankSlipControl.Domain.Services.v1.Contracts;
+using BankSlipControl.Domain.Mappers.v1.BankProfile;
+using BankSlipControl.Domain.Services.v1.BankContract;
+using BankSlipControl.Domain.Services.v1.BankSlipContract;
 using BankSlipControl.Infrastructure.ImplementationPersistence.v1;
 using BankSlipControl.Infrastructure.ImplementationPersistence.v1.Implementation;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +26,8 @@ namespace BankSlipControl
 
             builder.Services.AddTransient<IBankSlipService, BankSlipService>();
             builder.Services.AddTransient<IBankService, BankService>();
+
+            builder.Services.AddAutoMapper(typeof(BankProfile));
 
             var app = builder.Build();
 

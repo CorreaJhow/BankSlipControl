@@ -1,4 +1,5 @@
-﻿using BankSlipControl.Domain.Entities.v1;
+﻿using BankSlipControl.Domain.Entities.v1.BankEntitie;
+using BankSlipControl.Domain.Entities.v1.BankSlipEntitie;
 using Microsoft.EntityFrameworkCore;
 
 namespace BankSlipControl.Infrastructure.ImplementationPersistence.v1

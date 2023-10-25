@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BankSlipControl.Domain.Entities.v1
+namespace BankSlipControl.Domain.Entities.v1.BankEntitie
 {
     public class Bank
     {

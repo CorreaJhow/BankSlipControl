@@ -1,5 +1,7 @@
-﻿using BankSlipControl.Domain.InputModels.v1.Bank;
-using BankSlipControl.Domain.Services.v1.Contracts;
+﻿using BankSlipControl.Domain.Entities.v1.BankSlipEntitie;
+using BankSlipControl.Domain.InputModels.v1.Bank;
+using BankSlipControl.Domain.InputModels.v1.BankSlip;
+using BankSlipControl.Domain.Services.v1.BankSlipContract;
 using BankSlipControl.Infrastructure.ImplementationPersistence.v1;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,9 +14,12 @@ namespace BankSlipControl.Infrastructure.ImplementationPersistence.v1.Implementa
         {
             _context = context;
         }
-        public Task<IActionResult> CreateBankBill(NewBankInputModel newBankInputModel)
+
+        public Task<IActionResult> CreateBankSlip(BankSlip newBankSlip)
         {
+            //mapear utilizando auto mapper NewBankSlipInputModel para BankSlip
             throw new NotImplementedException();
+
         }
 
         public Task<IActionResult> GetBankBillById(int id)

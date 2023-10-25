@@ -1,5 +1,5 @@
 ﻿using BankSlipControl.Domain.InputModels.v1.Bank;
-using BankSlipControl.Domain.Services.v1.Contracts;
+using BankSlipControl.Domain.Services.v1.BankContract;
 using BankSlipControl.Infrastructure.ImplementationPersistence.v1;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,7 +12,7 @@ namespace BankSlipControl.Infrastructure.ImplementationPersistence.v1.Implementa
         {
             _context = context;
         }
-        public Task<IActionResult> CreateBank(NewBankInputModel newBankInputModel)
+        public Task<IActionResult> CreateBank(BankInputModel newBankInputModel)
         {
             throw new NotImplementedException();
         }

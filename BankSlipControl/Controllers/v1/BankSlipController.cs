@@ -1,5 +1,8 @@
-﻿using BankSlipControl.Domain.InputModels.v1.Bank;
-using BankSlipControl.Domain.Services.v1.Contracts;
+﻿using AutoMapper;
+using BankSlipControl.Domain.Entities.v1.BankSlipEntitie;
+using BankSlipControl.Domain.InputModels.v1.Bank;
+using BankSlipControl.Domain.InputModels.v1.BankSlip;
+using BankSlipControl.Domain.Services.v1.BankSlipContract;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BankSlipControl.Controllers.v1
@@ -9,15 +12,25 @@ namespace BankSlipControl.Controllers.v1
     public class BankSlipController : ControllerBase
     {
         private readonly IBankSlipService _bankSlipService;
-        public BankSlipController(IBankSlipService bankSlipService)
+        private readonly IMapper _mapper;
+        public BankSlipController(IBankSlipService bankSlipService,
+                                  IMapper mapper)
         {
             _bankSlipService = bankSlipService;
+            _mapper = mapper;
         }
 
         [HttpPost("/v1/bankslip")]
-        public async Task<IActionResult> CreateBankBill(NewBankInputModel newBankInputModel)  
+        public async Task<IActionResult> CreateBankSlip(BankSlipInputModel newBankSlipInputModel)  
         {
-            return Ok();
+            var bankSlip = _mapper.Map<BankSlip>(newBankSlipInputModel); 
+
+            var bankId = await _bankSlipService.CreateBankSlip(bankSlip);
+
+            if(bankId is null)
+                return NotFound(); 
+            
+            return Ok(bankId);
         }
 
         [HttpGet("/v1/bankslip/{id}")]
