@@ -1,5 +1,5 @@
 ﻿using BankSlipControl.Domain.Entities.v1.BankSlipEntitie;
-using BankSlipControl.Domain.Services.v1.BankSlipContract;
+using BankSlipControl.Domain.Services.v1.BankSlipService;
 
 namespace BankSlipControl.Infrastructure.ImplementationPersistence.v1.Implementation
 {

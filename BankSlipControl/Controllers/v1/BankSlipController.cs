@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using BankSlipControl.Domain.Entities.v1.BankSlipEntitie;
 using BankSlipControl.Domain.InputModels.v1.BankSlip;
-using BankSlipControl.Domain.Services.v1.BankContract;
-using BankSlipControl.Domain.Services.v1.BankSlipContract;
+using BankSlipControl.Domain.Services.v1.BankService;
+using BankSlipControl.Domain.Services.v1.BankSlipService;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BankSlipControl.Controllers.v1

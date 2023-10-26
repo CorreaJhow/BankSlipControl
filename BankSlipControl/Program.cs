@@ -1,15 +1,21 @@
 using BankSlipControl.Domain.InputModels.v1.Bank;
 using BankSlipControl.Domain.InputModels.v1.BankSlip;
+using BankSlipControl.Domain.InputModels.v1.User;
 using BankSlipControl.Domain.Mappers.v1.BankProfile;
-using BankSlipControl.Domain.Services.v1.BankContract;
-using BankSlipControl.Domain.Services.v1.BankSlipContract;
+using BankSlipControl.Domain.Services.v1.BankService;
+using BankSlipControl.Domain.Services.v1.BankSlipService;
+using BankSlipControl.Domain.Services.v1.UserService;
 using BankSlipControl.Domain.Validations.v1.BankSlipValidation;
 using BankSlipControl.Domain.Validations.v1.BankValidation;
+using BankSlipControl.Domain.Validations.v1.UserValidation;
 using BankSlipControl.Infrastructure.ImplementationPersistence.v1;
 using BankSlipControl.Infrastructure.ImplementationPersistence.v1.Implementation;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace BankSlipControl
 {
@@ -33,11 +39,27 @@ namespace BankSlipControl
 
             builder.Services.AddTransient<IBankSlipService, BankSlipService>();
             builder.Services.AddTransient<IBankService, BankService>();
+            builder.Services.AddTransient<IUserService, UserService>();
 
             builder.Services.AddTransient<IValidator<BankInputModel>, BankValidator>();
             builder.Services.AddTransient<IValidator<BankSlipInputModel>, BankSlipValidator>();
+            builder.Services.AddTransient<IValidator<UserInputModel>, UserValidator>();
 
             builder.Services.AddAutoMapper(typeof(BankProfile));
+
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
+                options.RequireHttpsMetadata = false;
+                options.SaveToken = true;
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidAudience = builder.Configuration["Jwt:Audience"],
+                    ValidIssuer = builder.Configuration["Jwt:Issuer"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+                };
+            });
 
             var app = builder.Build();
 
@@ -51,7 +73,7 @@ namespace BankSlipControl
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthorization();
-
+            app.UseAuthentication();
 
             app.MapControllers();
 

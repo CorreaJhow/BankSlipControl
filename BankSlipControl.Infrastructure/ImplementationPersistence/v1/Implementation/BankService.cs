@@ -1,7 +1,7 @@
 ﻿using BankSlipControl.Domain.Entities.v1.BankEntitie;
 using BankSlipControl.Domain.Entities.v1.BankSlipEntitie;
 using BankSlipControl.Domain.InputModels.v1.Bank;
-using BankSlipControl.Domain.Services.v1.BankContract;
+using BankSlipControl.Domain.Services.v1.BankService;
 using BankSlipControl.Infrastructure.ImplementationPersistence.v1;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

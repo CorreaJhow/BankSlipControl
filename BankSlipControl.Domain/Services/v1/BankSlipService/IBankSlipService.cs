@@ -1,6 +1,6 @@
 ﻿using BankSlipControl.Domain.Entities.v1.BankSlipEntitie;
 
-namespace BankSlipControl.Domain.Services.v1.BankSlipContract
+namespace BankSlipControl.Domain.Services.v1.BankSlipService
 {
     public interface IBankSlipService
     {
