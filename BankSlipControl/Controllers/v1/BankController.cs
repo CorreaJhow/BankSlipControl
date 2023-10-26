@@ -2,12 +2,14 @@
 using BankSlipControl.Domain.Entities.v1.BankEntitie;
 using BankSlipControl.Domain.InputModels.v1.Bank;
 using BankSlipControl.Domain.Services.v1.BankService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BankSlipControl.Controllers.v1
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class BankController : ControllerBase
     {
         private readonly IBankService _bankService;

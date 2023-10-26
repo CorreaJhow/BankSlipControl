@@ -7,5 +7,6 @@ namespace BankSlipControl.Domain.Services.v1.UserService
     {
         public Task<User> RegisterUser(User newUser);
         public Task<UserViewModel> LoginUser(User userLogin);
+        public string GetToken(UserViewModel user);
     }
 }

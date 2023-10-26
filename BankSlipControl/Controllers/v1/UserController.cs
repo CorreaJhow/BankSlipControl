@@ -1,12 +1,8 @@
 ﻿using AutoMapper;
-using BankSlipControl.Domain.Entities.v1.BankSlipEntitie;
 using BankSlipControl.Domain.Entities.v1.UserEntitie;
 using BankSlipControl.Domain.InputModels.v1.User;
 using BankSlipControl.Domain.Services.v1.UserService;
-using BankSlipControl.Infrastructure.ImplementationPersistence.v1.Implementation;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Runtime.CompilerServices;
 
 namespace BankSlipControl.Controllers.v1
 {
@@ -16,7 +12,7 @@ namespace BankSlipControl.Controllers.v1
     {
         private readonly IMapper _mapper;
         private readonly IUserService _userService;
-        
+
         public UserController(IMapper mapper, IUserService userService)
         {
             _mapper = mapper;
@@ -38,7 +34,7 @@ namespace BankSlipControl.Controllers.v1
                 if (result == null)
                     new Exception("error during the user registration process");
 
-                return Ok(result); 
+                return Ok(result);
             }
             catch (Exception ex)
             {
@@ -61,7 +57,7 @@ namespace BankSlipControl.Controllers.v1
                 if (result != null)
                 {
                     var viewUser = _mapper.Map<UserViewModel>(result);
-
+                    viewUser.AccessToken = _userService.GetToken(viewUser);
                     return Ok(viewUser);
                 }
                 else
