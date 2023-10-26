@@ -48,14 +48,14 @@ namespace BankSlipControl.Controllers.v1
         }
 
         [HttpGet("/v1/bankslip/{id}")]
-        public async Task<IActionResult> GetBankBillById(int id)
+        public async Task<IActionResult> GetBankSlipById(int id)
         {
             try
             {
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
 
-                var bankSlip = await _bankSlipService.GetBankBillById(id);
+                var bankSlip = await _bankSlipService.GetBankSlipById(id);
 
                 if (bankSlip is null)
                     return NotFound();
@@ -63,7 +63,7 @@ namespace BankSlipControl.Controllers.v1
                 if (DateTime.Now > bankSlip.ExpiryDate)
                 {
                     var bank = await _bankService.GetBankById(bankSlip.BankId);
-
+                     
                     bankSlip.Value = bankSlip.Value + (bankSlip.Value * bank.InterestPercentage / 100);
                 }
 

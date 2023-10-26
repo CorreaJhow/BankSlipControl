@@ -6,7 +6,7 @@ namespace BankSlipControl.Domain.Services.v1.BankService
     {
         public Task<Bank> CreateBank(Bank newBank);
         public Task<List<Bank>> GetAllBanks();
+        public Task<Bank> GetBankByCode(int code);
         public Task<Bank> GetBankById(int id);
-
     }
 }

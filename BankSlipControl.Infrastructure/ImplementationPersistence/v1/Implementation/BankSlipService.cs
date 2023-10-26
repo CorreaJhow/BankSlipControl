@@ -29,7 +29,7 @@ namespace BankSlipControl.Infrastructure.ImplementationPersistence.v1.Implementa
             }
         }
 
-        public async Task<BankSlip> GetBankBillById(int id)
+        public async Task<BankSlip> GetBankSlipById(int id)
         {
             try
             {

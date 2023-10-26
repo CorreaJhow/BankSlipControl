@@ -63,15 +63,15 @@ namespace BankSlipControl.Controllers.v1
             }
         }
 
-        [HttpGet("/v1/bank/{id}")]
-        public async Task<IActionResult> GetBankById(int id)    
+        [HttpGet("/v1/bank/{code}")]
+        public async Task<IActionResult> GetBankByCode(int code)
         {
             try
             {
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
 
-                var bank = await _bankService.GetBankById(id);
+                var bank = await _bankService.GetBankByCode(code);
 
                 if (bank is null)
                     return NotFound();
