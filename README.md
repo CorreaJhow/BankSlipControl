@@ -1,4 +1,4 @@
-# BankSlipControlAPI 💻💸
+# BankSlipControlAPI 💻
 
 A API BankSlipControl é um projeto desenvolvido para o gerenciamento de boletos bancários. Esta API, conectada a um banco de dados PostgreSQL, implementa algumas operações do CRUD para lidar eficientemente com o cadastro e busca de boletos bancarios e bancos.
 
