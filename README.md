@@ -50,7 +50,7 @@ Contribuições são bem-vindas! Sintam-se à vontade para abrir uma issue para 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# BankSlipControlAPI (English)💻💸
+# BankSlipControlAPI (English)💻
 
 The BankSlipControl API is a project developed for the management of bank slips. This API, connected to a PostgreSQL database, implements some CRUD operations to efficiently handle the registration and retrieval of bank slips and banks.
 
